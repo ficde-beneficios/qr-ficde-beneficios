@@ -40,13 +40,13 @@
           </div>
           <div class="meta-item">
             <strong>Estado</strong>
-            <span>Activo para demo</span>
+            <span>Activo</span>
           </div>
         </div>
 
         <div class="actions spacer-lg">
-          <a class="btn btn-primary" href="/mi-qr">Ver mi QR</a>
-          <a class="btn btn-secondary" href="/logout">Cerrar sesión</a>
+          <a class="btn btn-primary" href="{{ url_for('mi_qr') }}">Ver mi QR</a>
+          <a class="btn btn-secondary" href="{{ url_for('logout') }}">Cerrar sesión</a>
         </div>
       </section>
 
