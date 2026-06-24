@@ -8,9 +8,29 @@
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>Sesión cerrada</h1>
-      <p>El QR deja de estar disponible hasta volver a iniciar sesión.</p>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img class="brand-logo" src="{{ url_for('static', filename='images/logo-ficde.png') }}" alt="Logo FICDE">
+          </div>
+          <div class="brand-copy">
+            <span class="eyebrow">Sesión finalizada</span>
+            <h1>Acceso cerrado</h1>
+            <p>La sesión fue cerrada correctamente. Para volver a generar un QR, debes iniciar sesión nuevamente.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="card center">
+        <div class="actions center">
+          <a class="btn btn-primary" href="/login-demo">Volver a ingresar</a>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Uso exclusivo para validación temporal de beneficios FICDE.
+      </div>
     </div>
   </div>
 </body>

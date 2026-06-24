@@ -3,19 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FICDE QR</title>
+  <title>Beneficios FICDE</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>FICDE QR dinámico</h1>
-      <p>Proyecto base para membresía y descuentos con validación por QR desde Flask.</p>
-      <div class="info">
-        <strong>URL base actual:</strong>
-        <div class="codebox">{{ base_url }}</div>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img class="brand-logo" src="{{ url_for('static', filename='images/logo-ficde.png') }}" alt="Logo FICDE">
+          </div>
+          <div class="brand-copy">
+            <span class="eyebrow">Comunidad institucional</span>
+            <h1>Beneficios FICDE</h1>
+            <p>Sistema institucional de validación temporal para beneficios y descuentos en comercios adheridos.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="card hero-card">
+        <div class="hero-grid">
+          <div class="panel">
+            <h2>Acceso y validación</h2>
+            <p>Este sistema genera un código QR temporal para que miembros de la comunidad FICDE puedan acreditar su condición ante comercios adheridos.</p>
+            <p>La validación está pensada para un uso simple, rápido y seguro desde celular, tanto para el alumno como para el comercio.</p>
+
+            <div class="actions">
+              <a class="btn btn-primary" href="/login-demo">Ingresar con acceso demo</a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Información del sistema</h2>
+            <div class="kpis">
+              <div class="kpi">
+                <strong>Validez del QR</strong>
+                <span>10 minutos</span>
+              </div>
+              <div class="kpi">
+                <strong>Uso previsto</strong>
+                <span>Celular y web</span>
+              </div>
+              <div class="kpi">
+                <strong>Ámbito</strong>
+                <span>PY y AR</span>
+              </div>
+            </div>
+
+            <div class="info-box spacer-lg">
+              <strong>URL base actual</strong>
+              <div class="codebox spacer-top">{{ base_url }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Uso exclusivo para validación temporal de beneficios FICDE.
       </div>
-      <a class="btn" href="/login-demo">Entrar con login demo</a>
     </div>
   </div>
 </body>

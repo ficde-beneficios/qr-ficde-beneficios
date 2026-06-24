@@ -8,13 +8,49 @@
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>{{ 'Descuento aprobado' if ok else 'Código rechazado' }}</h1>
-      <div class="{{ 'ok' if ok else 'error' }}">{{ message }}</div>
-      <div class="info small">
-        <div><strong>Fecha y hora:</strong> {{ ts }}</div>
-        <div><strong>Ámbito:</strong> Paraguay y Argentina</div>
-        {% if country %}<div><strong>País declarado:</strong> {{ country }}</div>{% endif %}
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img class="brand-logo" src="{{ url_for('static', filename='images/logo-ficde.png') }}" alt="Logo FICDE">
+          </div>
+          <div class="brand-copy">
+            <span class="eyebrow">Validación comercial</span>
+            <h1>Control de beneficios FICDE</h1>
+            <p>Verificación temporal de membresía institucional para descuentos y beneficios adheridos.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="status-box {{ 'status-ok' if ok else 'status-error' }}">
+          <div class="status-icon">{{ '✓' if ok else '!' }}</div>
+          <h2 class="status-title">{{ 'Descuento aprobado' if ok else 'Código rechazado' }}</h2>
+          <p class="status-message">{{ message }}</p>
+        </div>
+
+        <div class="meta-grid spacer-lg">
+          <div class="meta-item">
+            <strong>Fecha y hora</strong>
+            <span>{{ ts }}</span>
+          </div>
+          <div class="meta-item">
+            <strong>Ámbito de beneficios</strong>
+            <span>Paraguay y Argentina</span>
+          </div>
+          <div class="meta-item">
+            <strong>Uso del resultado</strong>
+            <span>Validación momentánea</span>
+          </div>
+          <div class="meta-item">
+            <strong>País declarado</strong>
+            <span>{{ country if country else 'No disponible' }}</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Uso exclusivo para validación temporal de beneficios FICDE.
       </div>
     </div>
   </div>

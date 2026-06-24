@@ -3,20 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login demo</title>
+  <title>Acceso FICDE</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>Sesión iniciada</h1>
-      <p>Usuario demo cargado correctamente dentro del campus.</p>
-      <div class="info">
-        <div><strong>ID:</strong> {{ user.id }}</div>
-        <div><strong>País:</strong> {{ user.country }}</div>
-        <div><strong>Miembro:</strong> {{ 'Sí' if user.is_member else 'No' }}</div>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img class="brand-logo" src="{{ url_for('static', filename='images/logo-ficde.png') }}" alt="Logo FICDE">
+          </div>
+          <div class="brand-copy">
+            <span class="eyebrow">Acceso validado</span>
+            <h1>Sesión iniciada correctamente</h1>
+            <p>Tu acceso institucional fue reconocido y ya puedes generar tu código QR temporal.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="card">
+        <span class="badge">Miembro habilitado</span>
+
+        <div class="meta-grid spacer-lg">
+          <div class="meta-item">
+            <strong>ID institucional</strong>
+            <span>{{ user.id }}</span>
+          </div>
+          <div class="meta-item">
+            <strong>País declarado</strong>
+            <span>{{ user.country }}</span>
+          </div>
+          <div class="meta-item">
+            <strong>Pertenencia a comunidad</strong>
+            <span>{{ 'Sí' if user.is_member else 'No' }}</span>
+          </div>
+          <div class="meta-item">
+            <strong>Estado</strong>
+            <span>Activo para demo</span>
+          </div>
+        </div>
+
+        <div class="actions spacer-lg">
+          <a class="btn btn-primary" href="/mi-qr">Ver mi QR</a>
+          <a class="btn btn-secondary" href="/logout">Cerrar sesión</a>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Uso exclusivo para validación temporal de beneficios FICDE.
       </div>
-      <a class="btn" href="/mi-qr">Abrir mi QR</a>
     </div>
   </div>
 </body>

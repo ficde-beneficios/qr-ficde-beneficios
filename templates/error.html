@@ -8,9 +8,35 @@
 </head>
 <body>
   <div class="container">
-    <div class="card">
-      <h1>{{ title }}</h1>
-      <div class="error">{{ message }}</div>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-logo-wrap">
+            <img class="brand-logo" src="{{ url_for('static', filename='images/logo-ficde.png') }}" alt="Logo FICDE">
+          </div>
+          <div class="brand-copy">
+            <span class="eyebrow">Estado del acceso</span>
+            <h1>{{ title }}</h1>
+            <p>Se produjo una restricción en el acceso o en la generación del código temporal.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="status-box status-error">
+          <div class="status-icon">!</div>
+          <h2 class="status-title">{{ title }}</h2>
+          <p class="status-message">{{ message }}</p>
+        </div>
+
+        <div class="actions spacer-lg">
+          <a class="btn btn-primary" href="/login-demo">Ir al acceso demo</a>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Uso exclusivo para validación temporal de beneficios FICDE.
+      </div>
     </div>
   </div>
 </body>
