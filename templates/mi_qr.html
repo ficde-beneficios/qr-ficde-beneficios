@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi QR FICDE</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>QR de membresía FICDE</h1>
+      <p>Muéstrale este QR al comercio adherido para validar tu descuento.</p>
+      <div class="qr-wrap">
+        <img src="{{ qr_url }}" alt="QR FICDE">
+      </div>
+      <div class="note small">
+        Este código es temporal (aprox. {{ lifetime_minutes }} minutos). Si el comercio recibe mensaje de código vencido, vuelve a abrir esta página.
+      </div>
+      <div class="info small">
+        <strong>URL pública usada por el QR:</strong>
+        <div class="codebox">{{ validate_url }}</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

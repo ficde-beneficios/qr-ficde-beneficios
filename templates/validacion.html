@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validación FICDE</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>{{ 'Descuento aprobado' if ok else 'Código rechazado' }}</h1>
+      <div class="{{ 'ok' if ok else 'error' }}">{{ message }}</div>
+      <div class="info small">
+        <div><strong>Fecha y hora:</strong> {{ ts }}</div>
+        <div><strong>Ámbito:</strong> Paraguay y Argentina</div>
+        {% if country %}<div><strong>País declarado:</strong> {{ country }}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

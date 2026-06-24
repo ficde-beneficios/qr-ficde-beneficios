@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FICDE QR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>FICDE QR dinámico</h1>
+      <p>Proyecto base para membresía y descuentos con validación por QR desde Flask.</p>
+      <div class="info">
+        <strong>URL base actual:</strong>
+        <div class="codebox">{{ base_url }}</div>
+      </div>
+      <a class="btn" href="/login-demo">Entrar con login demo</a>
+    </div>
+  </div>
+</body>
+</html>

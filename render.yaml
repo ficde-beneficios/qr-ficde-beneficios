@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: qr-ficde-beneficios
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: TOKEN_SECRET
+        generateValue: true
+      - key: QR_LIFETIME_SECONDS
+        value: 600
+      - key: BASE_URL
+        sync: false

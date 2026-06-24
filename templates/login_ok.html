@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Sesión iniciada</h1>
+      <p>Usuario demo cargado correctamente dentro del campus.</p>
+      <div class="info">
+        <div><strong>ID:</strong> {{ user.id }}</div>
+        <div><strong>País:</strong> {{ user.country }}</div>
+        <div><strong>Miembro:</strong> {{ 'Sí' if user.is_member else 'No' }}</div>
+      </div>
+      <a class="btn" href="/mi-qr">Abrir mi QR</a>
+    </div>
+  </div>
+</body>
+</html>
