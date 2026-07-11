@@ -113,17 +113,20 @@ def mi_qr():
             message="El usuario actual no posee membresía habilitada."
         ), 403
 
+    # Construimos el token, pero no mostramos la URL en pantalla
     token = build_token(user["id"], user["country"])
     validate_url = f"{BASE_URL}/validar/{token}"
+
+    # Generamos el QR a partir de la URL de validación
     qr_url = generate_qr_base64(validate_url)
 
+    # Enviamos solo lo necesario a la plantilla
     return render_template(
-    "mi_qr.html",
-    qr_url=qr_image_url,
-    lifetime_minutes=QR_LIFETIME_SECONDS // 60,
-    refresh_url=url_for("mi_qr"),
-)
-
+        "mi_qr.html",
+        qr_url=qr_url,
+        lifetime_minutes=QR_LIFETIME_SECONDS // 60,
+        refresh_url=url_for("mi_qr"),
+    )
 
 @app.route("/validar/<path:token>")
 def validar(token):
