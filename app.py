@@ -86,14 +86,19 @@ def login_demo():
         "country": "Paraguay",
         "is_member": True
     }
-    return render_template("login_ok.html", user=session["user"])
+    # En vez de mostrar otra página, vamos directo al QR
+    return mi_qr()
 
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return render_template("logout.html")
-
+    # Después de cerrar sesión, podrías mostrar un mensaje simple
+    return render_template(
+        "error.html",
+        title="Sesión finalizada",
+        message="La sesión se cerró correctamente. Para generar un nuevo código, ingresa otra vez desde el campus."
+    )
 
 @app.route("/mi-qr")
 def mi_qr():
