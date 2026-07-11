@@ -75,7 +75,7 @@ def generate_qr_base64(data: str) -> str:
 
 @app.route("/")
 def home():
-    return render_template("home.html", base_url=BASE_URL)
+    return mi_qr()
 
 
 @app.route("/ingresar")
@@ -118,11 +118,11 @@ def mi_qr():
     qr_url = generate_qr_base64(validate_url)
 
     return render_template(
-        "mi_qr.html",
-        qr_url=qr_url,
-        validate_url=validate_url,
-        lifetime_minutes=QR_LIFETIME_SECONDS // 60
-    )
+    "mi_qr.html",
+    qr_url=qr_image_url,
+    lifetime_minutes=QR_LIFETIME_SECONDS // 60,
+    refresh_url=url_for("mi_qr"),
+)
 
 
 @app.route("/validar/<path:token>")

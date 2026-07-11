@@ -1,173 +1,142 @@
-# Beneficios FICDE QR
+#### **# Sistema de Validación con QR Dinámico**
 
-Sistema institucional de validación temporal mediante código QR para beneficios y descuentos de la comunidad FICDE.
 
-La aplicación permite generar un QR temporal desde una sesión activa y validarlo desde un celular o navegador en comercios adheridos. Está pensada para una experiencia simple, rápida y clara, con enfoque institucional para uso en Paraguay y Argentina.
 
-## Objetivo
+###### **## Descripción general**
 
-Brindar una forma práctica de acreditar membresía o pertenencia a la comunidad FICDE mediante un código QR con vencimiento, evitando validaciones manuales y facilitando el uso de beneficios institucionales.
 
-## Funcionalidades
 
-- Inicio institucional con acceso demo.
-- Generación de QR temporal para el usuario autenticado.
-- Validación web del QR desde un comercio adherido.
-- Mensajes visuales claros para aprobación o rechazo.
-- Diseño institucional FICDE con identidad visual azul y naranja.
-- Despliegue online con Render.
+Este proyecto permite la validación institucional de estudiantes mediante un \*\*QR dinámico\*\* generado desde una aplicación web.
 
-## Estructura del proyecto
+El flujo previsto es que el estudiante acceda desde el campus o página institucional, ingrese al sistema, visualice su código QR temporal y lo presente en un comercio adherido para su verificación.
 
-```text
-qr-ficde-beneficios/
-├─ app.py
-├─ requirements.txt
-├─ Procfile
-├─ render.yaml
-├─ README.md
-├─ static/
-│  ├─ style.css
-│  └─ images/
-│     └─ logo-ficde.jpg
-└─ templates/
-   ├─ home.html
-   ├─ login_ok.html
-   ├─ logout.html
-   ├─ error.html
-   ├─ mi_qr.html
-   └─ validacion.html
-```
 
-## Requisitos
 
-- Python 3.11 o compatible
-- pip
-- Entorno virtual recomendado
+###### **## Objetivo del sistema**
 
-## Instalación local
 
-1. Clonar el repositorio:
 
-```bash
-git clone https://github.com/ficde-beneficios/qr-ficde-beneficios.git
-cd qr-ficde-beneficios
-```
+El propósito de la plataforma es facilitar una validación rápida y confiable de pertenencia a la comunidad institucional, evitando procesos manuales y permitiendo una comprobación en línea al momento del escaneo.
 
-2. Crear y activar entorno virtual:
 
-### Windows
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
 
-### macOS / Linux
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
+###### **## Flujo de uso**
 
-3. Instalar dependencias:
 
-```bash
-pip install -r requirements.txt
-```
 
-4. Configurar variables de entorno.
+1\. El estudiante accede desde el campus o página institucional.
 
-5. Ejecutar la aplicación:
+2\. Ingresa al módulo del sistema mediante el botón o enlace provisto por la institución.
 
-```bash
-python app.py
-```
+3\. El sistema genera y muestra un QR dinámico temporal.
 
-Luego abrir en el navegador:
+4\. El comercio o entidad autorizada escanea el código.
 
-```text
-http://127.0.0.1:5000
-```
+5\. El sistema muestra la validación correspondiente en línea.
 
-## Variables de entorno
 
-La aplicación utiliza variables de entorno para configuración y seguridad:
 
-```text
-FLASK_SECRET_KEY=tu_clave_secreta
-TOKEN_SECRET=tu_token_secreto
-QR_LIFETIME_SECONDS=600
-BASE_URL=https://tu-dominio-o-url-render
-```
+###### **## Alcance de autenticación**
 
-### Descripción
 
-- `FLASK_SECRET_KEY`: clave de sesión de Flask.
-- `TOKEN_SECRET`: clave para firmar o validar el token temporal.
-- `QR_LIFETIME_SECONDS`: tiempo de validez del QR en segundos.
-- `BASE_URL`: URL pública usada para construir el enlace de validación del QR.
 
-## Uso
+El sistema está pensado para operar desde un entorno institucional previamente autenticado. Por ello, la verificación de que el usuario pertenece a la comunidad puede realizarse desde el campus o página institucional antes de llegar al módulo QR.
 
-### Flujo demo
 
-1. Ingresar a `/login-demo`
-2. Abrir `/mi-qr`
-3. Mostrar o escanear el QR
-4. Abrir la URL `/validar/<token>`
-5. Ver resultado:
-   - `Descuento aprobado`
-   - `Código rechazado`
 
-## Despliegue en Render
+###### **## Infraestructura entregada**
 
-La aplicación puede desplegarse como **Web Service** en Render.
 
-### Configuración recomendada
 
-- Environment: `Python 3`
-- Build Command:
-```bash
-pip install -r requirements.txt
-```
+La entrega contempla lo siguiente:
 
-- Start Command:
-```bash
-gunicorn app:app
-```
 
-Render volverá a desplegar automáticamente la app al hacer push a la rama conectada del repositorio.
 
-## Diseño institucional
+\- Cuenta de correo creada para la institución:  ficdebeneficios@gmail.com / contraseña: Ficdedescuentos
 
-La interfaz fue ajustada con identidad visual FICDE:
+\- Acceso al repositorio del proyecto en GitHub: ficde-beneficios / contraseña: Ficdedescuentos
 
-- Logo institucional
-- Paleta azul y naranja
-- Diseño claro y responsive
-- Pantallas optimizadas para celular y navegador
+\- Acceso al servicio desplegado en Render: ficdebeneficios@gmail.com/ contraseña: Ficdedescuentos
 
-## Estado actual
+\- Código fuente del sistema.
 
-Versión funcional para demostración institucional:
+\- Aplicación desplegada y funcional.
 
-- QR temporal operativo
-- Validación online operativa
-- Diseño institucional aplicado
-- Deploy activo en Render
 
-## Próximas mejoras posibles
 
-- Login real con usuarios institucionales
-- Panel de administración para comercios
-- Historial de validaciones
-- Dominio personalizado
-- Favicon institucional
-- README con capturas de pantalla
+###### **## Recomendación de despliegue**
 
-## Notas
 
-Este proyecto fue desarrollado como prototipo funcional para validación temporal de beneficios institucionales FICDE.
 
-## Autoría
+Para uso institucional se recomienda operar el proyecto desde cuentas administradas por la propia institución, tanto en GitHub como en Render. Esto permite que la organización mantenga control sobre el código, la facturación, la continuidad operativa y la gestión de accesos.
 
-Proyecto desarrollado para FICDE.
+
+
+###### **## Recomendación de hosting**
+
+
+
+Durante pruebas o en planes gratuitos, la plataforma de despliegue puede presentar demoras iniciales cuando el servicio entra en reposo por inactividad. Para una experiencia institucional más estable se recomienda contratar un plan de pago en Render, idealmente una opción orientada a producción y trabajo en equipo.
+
+
+
+###### **## Credenciales y administración**
+
+
+
+Se recomienda que la institución:
+
+
+
+\- Cambie las contraseñas iniciales al recibir el proyecto.
+
+\- Mantenga resguardo interno del correo, GitHub y Render.
+
+\- Defina los responsables técnicos o administrativos del sistema.
+
+\- Gestione directamente la contratación del plan de hosting.
+
+
+
+###### **## Estructura de entrega**
+
+
+
+Junto con este README, se entrega:
+
+
+
+\- URL pública del sistema.
+
+\- URL del repositorio.
+
+\- Correo institucional asociado al proyecto.
+
+\- Credenciales iniciales.
+
+\- Breve guía de acceso y administración.
+
+
+
+###### **## Observaciones**
+
+
+
+El sistema se entrega como una base funcional para integración institucional. Cualquier mejora futura, como autenticación más cerrada entre campus y aplicación, panel administrativo ampliado o reportes adicionales, puede incorporarse en una siguiente etapa.
+
+
+
+###### **## Datos del proyecto**
+
+
+
+\- Institución: FICDE
+
+\- URL pública del sistema: https://qr-ficde-beneficios.onrender.com
+
+\- Repositorio en GitHub: ficde-beneficios
+
+\- Correo institucional del proyecto: ficdebeneficios@gmail.com
+
+\- Panel de Render asociado: https://dashboard.render.com/web/srv-d8u33pojs32c73car3gg
+

@@ -8,54 +8,30 @@
 </head>
 <body>
   <div class="container">
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <div class="brand-logo-wrap">
-            <img class="brand-logo" src="{{ url_for('static', filename='images/logo-ficde.png') }}" alt="Logo FICDE">
-          </div>
-          <div class="brand-copy">
-            <span class="eyebrow">Credencial temporal</span>
-            <h1>QR de membresía FICDE</h1>
-            <p>Presenta este código al comercio adherido para validar tu acceso a beneficios institucionales.</p>
-          </div>
-        </div>
-      </header>
+    <div class="card qr-card">
+      <h1>QR de la comunidad FICDE</h1>
+      <p class="small">
+        Muéstrale este QR al comercio adherido para validar tu descuento como miembro de la comunidad FICDE.
+      </p>
 
-      <section class="card qr-card">
-        <div class="qr-frame">
-          <img src="{{ qr_url }}" alt="QR FICDE">
-        </div>
+      <div class="qr-frame">
+        <img src="{{ qr_url }}" alt="QR FICDE">
+      </div>
 
-        <div class="notice spacer-lg">
-          Este código es temporal y tiene una vigencia aproximada de {{ lifetime_minutes }} minutos. Si el comercio recibe un mensaje de código vencido, vuelve a generar esta pantalla.
-        </div>
+      <p class="small spacer-top">
+        Este código es temporal (aprox. {{ lifetime_minutes }} minutos). Si el tiempo vence, presiona el botón para generar un nuevo QR.
+      </p>
 
-        <div class="meta-grid spacer-lg">
-          <div class="meta-item">
-            <strong>Uso previsto</strong>
-            <span>Validación en comercios adheridos</span>
-          </div>
-          <div class="meta-item">
-            <strong>Tiempo de validez</strong>
-            <span>{{ lifetime_minutes }} minutos</span>
-          </div>
-        </div>
-
-        <div class="info-box spacer-lg">
-          <strong>URL pública de validación</strong>
-          <div class="codebox spacer-top">{{ validate_url }}</div>
-        </div>
-
-        <div class="actions spacer-lg">
-          <a class="btn btn-secondary" href="{{ url_for('logout') }}">Cerrar sesión</a>
-        </div>
-      </section>
-
-      <div class="footer-note">
-        Uso exclusivo para validación temporal de beneficios FICDE.
+      <div class="actions center spacer-top">
+        <a href="{{ refresh_url }}" class="btn btn-primary">
+          Actualizar código
+        </a>
       </div>
     </div>
+
+    <p class="footer-note">
+      Sistema de validación de beneficios de la comunidad FICDE.
+    </p>
   </div>
 </body>
 </html>
