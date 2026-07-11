@@ -75,36 +75,36 @@ def generate_qr_base64(data: str) -> str:
 
 @app.route("/")
 def home():
+    # Al entrar por el enlace principal, creamos el usuario en sesión
+    # y vamos directo a la pantalla del QR.
+    if "user" not in session:
+        session["user"] = {
+            "id": "FICDE-001",
+            "country": "Paraguay",
+            "is_member": True
+        }
     return mi_qr()
 
 
 @app.route("/ingresar")
 @app.route("/login-demo")
-def login_demo():
+def ingresar_qr():
+    # Si alguien entra por /ingresar o /login-demo,
+    # también lo llevamos directo al QR.
     session["user"] = {
         "id": "FICDE-001",
         "country": "Paraguay",
         "is_member": True
     }
-    # En vez de mostrar otra página, vamos directo al QR
     return mi_qr()
 
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    # Después de cerrar sesión, podrías mostrar un mensaje simple
-    return render_template(
-        "error.html",
-        title="Sesión finalizada",
-        message="La sesión se cerró correctamente. Para generar un nuevo código, ingresa otra vez desde el campus."
-    )
 
 @app.route("/mi-qr")
 def mi_qr():
     user = session.get("user")
 
     if not user:
+        # Esto solo quedaría como respaldo por si alguien borra la sesión
         return render_template(
             "error.html",
             title="Acceso requerido",
@@ -118,21 +118,16 @@ def mi_qr():
             message="El usuario actual no posee membresía habilitada."
         ), 403
 
-    # Construimos el token, pero no mostramos la URL en pantalla
     token = build_token(user["id"], user["country"])
     validate_url = f"{BASE_URL}/validar/{token}"
-
-    # Generamos el QR a partir de la URL de validación
     qr_url = generate_qr_base64(validate_url)
 
-    # Enviamos solo lo necesario a la plantilla
     return render_template(
         "mi_qr.html",
         qr_url=qr_url,
         lifetime_minutes=QR_LIFETIME_SECONDS // 60,
         refresh_url=url_for("mi_qr"),
     )
-
 @app.route("/validar/<path:token>")
 def validar(token):
     ok, message, country = parse_and_validate_token(token)
