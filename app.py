@@ -5,7 +5,7 @@ import base64
 import hashlib
 import hmac
 
-from flask import Flask, render_template, session, redirect, url_for, request
+from flask import Flask, render_template, session, url_for
 import qrcode
 
 app = Flask(__name__)
@@ -104,7 +104,7 @@ def mi_qr():
     user = session.get("user")
 
     if not user:
-        # Esto solo quedaría como respaldo por si alguien borra la sesión
+        # Respaldo por si la sesión se pierde
         return render_template(
             "error.html",
             title="Acceso requerido",
@@ -128,17 +128,16 @@ def mi_qr():
         lifetime_minutes=QR_LIFETIME_SECONDS // 60,
         refresh_url=url_for("mi_qr"),
     )
+
+
 @app.route("/validar/<path:token>")
 def validar(token):
     ok, message, country = parse_and_validate_token(token)
-    ts = time.strftime("%d/%m/%Y %H:%M:%S")
 
     return render_template(
         "validacion.html",
         ok=ok,
         message=message,
-        ts=ts,
-        country=country
     )
 
 
